@@ -1,0 +1,35 @@
+# --- 第一部分：部署控制器 (Deployment) ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-deployment
+spec:
+  replicas: 3                     # 【關鍵】我們要求 K8s 隨時保持 "3" 個複製品同時運行
+  selector:
+    matchLabels:
+      app: my-portfolio
+  template:                       # 這是 Pod 的模板
+    metadata:
+      labels:
+        app: my-portfolio
+    spec:
+      containers:
+      - name: my-portfolio-container
+        image: louisvong1/louis-portfolio:v2.1  # ⚠️ 請改成你 Docker Hub 的帳號
+        ports:
+        - containerPort: 80 
+
+---
+# --- 第二部分：服務入口 (Service) ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portfolio-service
+spec:
+  type: LoadBalancer              # 【關鍵】這會讓 Docker Desktop 幫我們配發一個入口 IP
+  selector:
+    app: my-portfolio             # 這行意思是：把流量導向標籤是 "my-portfolio" 的 Pod
+  ports:
+    - protocol: TCP
+      port: 80                    # 外部訪問的 Port
+      targetPort: 80              # 容器內部的 Port

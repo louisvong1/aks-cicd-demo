@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .             # <--- 關鍵！這裡告訴 Compose：「請去讀當前目錄下的 Dockerfile」
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/usr/share/nginx/html
+    container_name: my-portfolio

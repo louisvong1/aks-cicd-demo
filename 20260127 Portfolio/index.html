@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louis Vong - Solution Architect</title>
+    <meta name="description"
+        content="Louis Vong - Solution Architect specializing in cloud architecture, digital transformation, and enterprise solutions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="grid-overlay"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-text">LV</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#expertise" class="nav-link">Expertise</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    Available for Consulting
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Hi, I'm</span>
+                    <span class="title-name gradient-text">Louis Vong</span>
+                </h1>
+                <p class="hero-subtitle">Software Engineer | Cloud Solution Architect</p>
+                <p class="hero-description">
+                    University graduate with GCP & AI focus, specializing in cloud architecture and scalable solutions.
+                    Passionate about building robust cloud infrastructures and integrating AI into modern platforms.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Get In Touch</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    <a href="#about" class="btn btn-secondary">
+                        <span>Learn More</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="profile-container">
+                    <div class="profile-glow"></div>
+                    <div class="profile-photo-wrapper">
+                        <img src="profile-photo.png" alt="Louis Vong" class="profile-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Get to know me</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-intro">
+                        Hello! I'm Louis, a recent university graduate with around four years of
+                        programming experience, primarily using Python.
+                    </p>
+                    <p>
+                        I first deployed and maintained servers on GCP in 2021, which has since sparked a
+                        strong and ongoing interest in cloud technologies. During my studies, I completed the
+                        Code in Place project from Stanford University, which helped me build a solid foundation
+                        in programming.
+                    </p>
+                    <p>
+                        I have hands-on experience training AI models, from data preprocessing to model design
+                        and deployment. I'm also familiar with integrating AI into cloud platforms. Currently,
+                        I'm seeking opportunities where I can apply these skills, grow through real-world projects,
+                        and work with teams that value innovation and collaboration.
+                    </p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">4+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="visit-count">Loading...</div>
+                            <div class="stat-label">Total Visits</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="section expertise" id="expertise">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What I do best</span>
+                <h2 class="section-title">Core Expertise</h2>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 3v12" />
+                        </svg>
+                    </div>
+                    <h3>Cloud Architecture</h3>
+                    <p>Designing scalable, resilient cloud solutions on AWS, Azure, and GCP with focus on cost
+                        optimization and performance.</p>
+                    <div class="card-tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">Azure</span>
+                        <span class="tag">GCP</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7" />
+                            <rect x="14" y="3" width="7" height="7" />
+                            <rect x="14" y="14" width="7" height="7" />
+                            <rect x="3" y="14" width="7" height="7" />
+                        </svg>
+                    </div>
+                    <h3>Enterprise Integration</h3>
+                    <p>Building seamless integrations between legacy systems and modern platforms, ensuring data
+                        consistency and reliability.</p>
+                    <div class="card-tags">
+                        <span class="tag">Microservices</span>
+                        <span class="tag">APIs</span>
+                        <span class="tag">ETL</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                    </div>
+                    <h3>Digital Transformation</h3>
+                    <p>Leading organizations through technological evolution, modernizing infrastructure and processes
+                        for the digital age.</p>
+                    <div class="card-tags">
+                        <span class="tag">Strategy</span>
+                        <span class="tag">DevOps</span>
+                        <span class="tag">Agile</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M12 1v6m0 6v6m8.66-13.18l-5.2 3m-2.92 3.46l-5.2 3m12.32 0l-5.2-3m-2.92-3.46l-5.2-3" />
+                        </svg>
+                    </div>
+                    <h3>System Design</h3>
+                    <p>Architecting high-performance, fault-tolerant systems that scale efficiently and maintain data
+                        integrity.</p>
+                    <div class="card-tags">
+                        <span class="tag">Distributed</span>
+                        <span class="tag">High Availability</span>
+                        <span class="tag">Security</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+                            <path d="M9 12l2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h3>Security & Compliance</h3>
+                    <p>Implementing robust security frameworks and ensuring compliance with industry standards and
+                        regulations.</p>
+                    <div class="card-tags">
+                        <span class="tag">Zero Trust</span>
+                        <span class="tag">GDPR</span>
+                        <span class="tag">IAM</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 7h-9M14 17H5M18 12l-3-3m0 6l3-3" />
+                            <circle cx="5" cy="7" r="2" />
+                            <circle cx="19" cy="17" r="2" />
+                        </svg>
+                    </div>
+                    <h3>Technical Leadership</h3>
+                    <p>Guiding development teams, establishing best practices, and fostering a culture of innovation and
+                        excellence.</p>
+                    <div class="card-tags">
+                        <span class="tag">Mentoring</span>
+                        <span class="tag">Best Practices</span>
+                        <span class="tag">Innovation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">My journey</span>
+                <h2 class="section-title">Professional Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Solutions Architect</h3>
+                            <span class="timeline-period">Sep 2025 - Present</span>
+                        </div>
+                        <p class="timeline-company">Microfusion Technology Co., Ltd</p>
+                        <ul class="timeline-achievements">
+                            <li>Architected scalable, secure, and high-availability (HA) cloud solutions aligned with
+                                business goals</li>
+                            <li>Led seamless on-premise to cloud migrations, ensuring minimal downtime and data
+                                integrity</li>
+                            <li>Established cloud best practices, security compliance frameworks, and drove DevOps
+                                adoption</li>
+                            <li>Implemented FinOps strategies for cost control and resource tuning to maximize ROI</li>
+                            <li>Bridged business and technical teams, translating complex requirements into robust cloud
+                                solutions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Freelance Multimedia Editor</h3>
+                            <span class="timeline-period">Oct 2019 - Apr 2025</span>
+                        </div>
+                        <p class="timeline-company">Self-Employed</p>
+                        <ul class="timeline-achievements">
+                            <li>Provided professional multimedia editing services for various clients</li>
+                            <li>Managed multiple projects simultaneously with strict deadlines</li>
+                            <li>Developed strong communication and client management skills</li>
+                            <li>Delivered high-quality content tailored to client specifications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Cloud Engineer</h3>
+                            <span class="timeline-period">May 2021 - Jun 2022</span>
+                        </div>
+                        <p class="timeline-company">Self-Employed</p>
+                        <ul class="timeline-achievements">
+                            <li>Deployed and maintained virtual machines and application servers on Google Cloud
+                                Platform (GCP)</li>
+                            <li>Configured networking, firewall rules, and cloud storage solutions</li>
+                            <li>Monitored system performance and optimized resource usage</li>
+                            <li>Gained hands-on experience with Compute Engine, Cloud DNS, and IAM roles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Let's connect</span>
+                <h2 class="section-title">Get In Touch</h2>
+            </div>
+            <div class="contact-content">
+                <p class="contact-intro">
+                    Interested in collaboration or have a project in mind?
+                    I'm always open to discussing new opportunities and innovative solutions.
+                </p>
+                <div class="contact-methods">
+                    <a href="mailto:louisvong1205@gmail.com" class="contact-card">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>louisvong1205@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/louis-vong-74a289323" class="contact-card" target="_blank"
+                        rel="noopener">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>LinkedIn</h4>
+                            <p>louis-vong</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.instagram.com/louisvong__0512/" class="contact-card" target="_blank"
+                        rel="noopener">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Instagram</h4>
+                            <p>@louisvong__0512</p>
+                        </div>
+                    </a>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Taipei, Taiwan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Louis Vong. All rights reserved.</p>
+            <p class="footer-tagline">Architecting Tomorrow's Solutions Today</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

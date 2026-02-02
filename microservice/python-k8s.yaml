@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-deployment
+spec:
+  replicas: 2                     # 我們開 2 個 Python 服務來分擔流量
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-container
+        image: louisvong1/my-counter-app:v2.0  # ⚠️ 記得改成你的 Image 名稱
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-service
+spec:
+  type: LoadBalancer              # 這個要對外開放，所以用 LoadBalancer
+  selector:
+    app: python-app
+  ports:
+    - protocol: TCP
+      port: 5000                  # 外部訪問 Port
+      targetPort: 5000            # 容器內部 Port

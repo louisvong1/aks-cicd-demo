@@ -1,0 +1,34 @@
+# --- Redis Deployment (資料庫本體) ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine    # 直接用官方輕量版
+        ports:
+        - containerPort: 6379  # Redis 預設 Port
+
+---
+# --- Redis Service (內部聯絡人) ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service          # 【關鍵】這個名字就是 K8s 內部的 DNS 網域名稱！
+spec:
+  type: ClusterIP              # 【關鍵】ClusterIP 代表「不對外公開」，只有叢集內部的其他 Pod 連得到。
+  selector:
+    app: redis
+  ports:
+    - port: 6379
+      targetPort: 6379
