@@ -1,0 +1,73 @@
+name: Build and Deploy to AKS (ARM64)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. 拉取程式碼
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 2. 登入 Docker Hub
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # 3. 設置 QEMU (讓 Intel 電腦可以編譯 ARM64)
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    # 4. 設置 Docker Buildx
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    # 5. Build & Push 前端 (Portfolio)
+    - name: Build/Push Frontend
+      uses: docker/build-push-action@v5
+      with:
+        context: "./20260127 Portfolio"
+        push: true
+        platforms: linux/arm64           # 關鍵：指定 ARM 架構
+        tags: louisvong1/louis-portfolio:v2.1  # 注意：這裡版號我先寫死 v2.1，以後你可以改
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    # 6. Build & Push 後端 (Python)
+    - name: Build/Push Backend
+      uses: docker/build-push-action@v5
+      with:
+        context: "./level1-microservice/python-app"
+        push: true
+        platforms: linux/arm64           # 關鍵：指定 ARM 架構
+        tags: louisvong1/my-counter-app:v2.0
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    # 7. 登入 Azure
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    # 8. 連線到 AKS
+    - name: Set AKS Context
+      uses: azure/aks-set-context@v3
+      with:
+        resource-group: RG-K8S-TEST    # ⚠️ 請確認你的資源群組名稱
+        cluster-name: K8S-TEST         # ⚠️ 請確認你的 AKS 名稱
+
+    # 9. 部署 (重啟 Pod)
+    - name: Deploy to AKS
+      run: |
+        # 這裡會強制 K8s 重新拉取剛剛上傳的 Image
+        kubectl rollout restart deployment/portfolio-deployment
+        kubectl rollout restart deployment/python-deployment
+        kubectl get pods
