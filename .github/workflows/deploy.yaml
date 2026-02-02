@@ -44,7 +44,7 @@ jobs:
     - name: Build/Push Backend
       uses: docker/build-push-action@v5
       with:
-        context: "./level1-microservice/python-app"
+        context: "./microservice/python-app"
         push: true
         platforms: linux/arm64           # 關鍵：指定 ARM 架構
         tags: louisvong1/my-counter-app:v2.0
