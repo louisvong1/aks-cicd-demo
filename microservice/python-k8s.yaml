@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: python-container
-        image: louisvong1/my-counter-app:v2.0  # ⚠️ 記得改成你的 Image 名稱
+        image: louisvong1/my-counter-app:v2.0
+        imagePullPolicy: Always   # <--- 加入這一行！
         ports:
         - containerPort: 5000
 

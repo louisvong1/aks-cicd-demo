@@ -15,9 +15,10 @@ spec:
     spec:
       containers:
       - name: my-portfolio-container
-        image: louisvong1/louis-portfolio:v2.1  # ⚠️ 請改成你 Docker Hub 的帳號
+        image: louisvong1/louis-portfolio:v2.1
+        imagePullPolicy: Always   # <--- 加入這一行！(注意縮排要對齊 image)
         ports:
-        - containerPort: 80 
+        - containerPort: 80
 
 ---
 # --- 第二部分：服務入口 (Service) ---
