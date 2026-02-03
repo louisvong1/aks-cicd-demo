@@ -64,10 +64,16 @@ jobs:
         resource-group: RG-K8S-TEST    # ⚠️ 請確認你的資源群組名稱
         cluster-name: K8S-TEST         # ⚠️ 請確認你的 AKS 名稱
 
-    # 9. 部署 (重啟 Pod)
+    # 9. 部署 (更新架構 + 重啟 Pod)
     - name: Deploy to AKS
       run: |
-        # 這裡會強制 K8s 重新拉取剛剛上傳的 Image
+        # 1. 先把設計圖 (YAML) 交給 K8s --> 這裡就是你說的「組裝」
+        # 假設你的 yaml 檔都放在專案根目錄下的 k8s 資料夾
+        kubectl apply -f k8s/ 
+
+        # 2. 強制重啟 Deployment 以套用新 Image
         kubectl rollout restart deployment/portfolio-deployment
         kubectl rollout restart deployment/python-deployment
+        
+        # 3. 查看狀態
         kubectl get pods
