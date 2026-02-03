@@ -3,24 +3,31 @@ kind: Ingress
 metadata:
   name: portfolio-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /  # 這行非常重要，確保轉接後路徑會歸零
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    # 👇 新增這行：告訴 cert-manager 使用哪個發證者
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
+  # 👇 新增這塊 TLS 設定
+  tls:
+  - hosts:
+    - portfolio.20.210.49.222.nip.io  # 請確認這裡跟下面的 host 一模一樣
+    secretName: portfolio-tls-secret # 這是證書存檔的名字，cert-manager 會自動建立
   rules:
   - host: portfolio.20.210.49.222.nip.io
     http:
       paths:
-      - path: /             # 規則 1: 前端
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: portfolio-service
             port:
               number: 80
-      - path: /api          # <--- 新增這裡！規則 2: 後端
+      - path: /api
         pathType: Prefix
         backend:
           service:
-            name: python-service  # 對應到你的後端 Service 名字
+            name: python-service
             port:
-              number: 5000        # 後端的 Port
+              number: 5000
