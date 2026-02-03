@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: monitoring  # 重要！Grafana 裝在這個房間，Ingress 也要放這裡
+  annotations:
+    # 呼叫 cert-manager 自動申請憑證
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # 避免 Nginx 上傳限制或緩衝區問題 (Grafana 有時候需要)
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        # 這是你的新網址 (子網域)
+        - grafana.20.210.49.222.nip.io
+      # 憑證會存這裡
+      secretName: grafana-tls-secret
+  rules:
+    - host: grafana.20.210.49.222.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: monitoring-stack-grafana  # 請確認跟步驟 1 查到的一樣
+                port:
+                  number: 80
