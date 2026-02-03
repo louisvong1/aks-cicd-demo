@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /  # 這行非常重要，確保轉接後路徑會歸零
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: portfolio.20.210.49.222.nip.io
+    http:
+      paths:
+      - path: /             # 規則 1: 前端
+        pathType: Prefix
+        backend:
+          service:
+            name: portfolio-service
+            port:
+              number: 80
+      - path: /api          # <--- 新增這裡！規則 2: 後端
+        pathType: Prefix
+        backend:
+          service:
+            name: python-service  # 對應到你的後端 Service 名字
+            port:
+              number: 5000        # 後端的 Port

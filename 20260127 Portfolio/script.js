@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const countElement = document.getElementById('visit-count');
 
     // 這裡填入你 K8s Python Service 的網址 (74.176.141.105:5000)
-    fetch('http://74.176.141.105:5000')
+    fetch('/api')
         .then(response => response.json())
         .then(data => {
             // 把後端回傳的數字填入 HTML

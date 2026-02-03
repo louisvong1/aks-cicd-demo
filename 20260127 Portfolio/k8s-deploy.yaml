@@ -27,7 +27,7 @@ kind: Service
 metadata:
   name: portfolio-service
 spec:
-  type: LoadBalancer              # 【關鍵】這會讓 Docker Desktop 幫我們配發一個入口 IP
+  type: ClusterIP              
   selector:
     app: my-portfolio             # 這行意思是：把流量導向標籤是 "my-portfolio" 的 Pod
   ports:

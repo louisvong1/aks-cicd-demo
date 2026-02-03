@@ -25,7 +25,7 @@ kind: Service
 metadata:
   name: python-service
 spec:
-  type: LoadBalancer              # 這個要對外開放，所以用 LoadBalancer
+  type: ClusterIP              
   selector:
     app: python-app
   ports:
