@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: portfolio-deployment
 spec:
-  replicas: 3                     # 【關鍵】我們要求 K8s 隨時保持 "3" 個複製品同時運行
+  replicas: 1                     
   selector:
     matchLabels:
       app: my-portfolio

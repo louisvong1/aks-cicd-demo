@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: python-deployment
 spec:
-  replicas: 2                     # 我們開 2 個 Python 服務來分擔流量
+  replicas: 1                     # 我們開 2 個 Python 服務來分擔流量
   selector:
     matchLabels:
       app: python-app
