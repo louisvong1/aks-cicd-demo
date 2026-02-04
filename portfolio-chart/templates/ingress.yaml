@@ -4,17 +4,17 @@ metadata:
   name: portfolio-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    # 👇 新增這行：告訴 cert-manager 使用哪個發證者
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
-  # 👇 新增這塊 TLS 設定
   tls:
   - hosts:
-    - portfolio.20.210.49.222.nip.io  # 請確認這裡跟下面的 host 一模一樣
-    secretName: portfolio-tls-secret # 這是證書存檔的名字，cert-manager 會自動建立
+    # 👇 自動組合成 portfolio.20.210.49.222.nip.io
+    - portfolio.{{ .Values.ingress.baseDomain }}
+    secretName: portfolio-tls-secret
   rules:
-  - host: portfolio.20.210.49.222.nip.io
+  # 👇 同樣自動組合
+  - host: portfolio.{{ .Values.ingress.baseDomain }}
     http:
       paths:
       - path: /

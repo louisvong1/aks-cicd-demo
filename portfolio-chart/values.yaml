@@ -1,0 +1,29 @@
+ # --- 全域設定 (Global) ---
+# 這裡填你的 IP，以後換 IP 只要改這裡一次，所有 Ingress 都會自動變
+ingress:
+  baseDomain: "20.210.49.222.nip.io"
+
+# Let's Encrypt 用的 Email
+issuer:
+  email: "louisvong1205@gmail.com"
+
+# --- 前端設定 (Frontend) ---
+frontend:
+  replicaCount: 1             # 依照你的要求設為 1
+  image:
+    repository: "louisvong1/louis-portfolio"
+    tag: "v2.1"
+
+# --- 後端設定 (Backend) ---
+backend:
+  replicaCount: 1             # 依照你的要求設為 1
+  image:
+    repository: "louisvong1/my-counter-app"
+    tag: "v2.0"
+
+# --- 資料庫設定 (Redis) ---
+redis:
+  replicaCount: 1
+  image:
+    repository: "redis"
+    tag: "alpine"

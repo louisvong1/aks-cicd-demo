@@ -64,16 +64,21 @@ jobs:
         resource-group: RG-K8S-TEST    # ⚠️ 請確認你的資源群組名稱
         cluster-name: K8S-TEST         # ⚠️ 請確認你的 AKS 名稱
 
-    # 9. 部署 (更新架構 + 重啟 Pod)
-    - name: Deploy to AKS
+    # 9. 部署 (改用 Helm)
+    - name: Deploy to AKS with Helm
       run: |
-        # 1. 先把設計圖 (YAML) 交給 K8s --> 這裡就是你說的「組裝」
-        # 假設你的 yaml 檔都放在專案根目錄下的 k8s 資料夾
-        kubectl apply -f k8s/ 
+        # A. 安裝 Helm 工具 (GitHub 機器人預設沒有 Helm，要先裝)
+        curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-        # 2. 強制重啟 Deployment 以套用新 Image
-        kubectl rollout restart deployment/portfolio-deployment
-        kubectl rollout restart deployment/python-deployment
+        # B. 執行 Helm Upgrade
+        # --install: 如果是第一次部署就執行安裝，如果是後續部署就執行升級
+        # --atomic: 如果升級失敗，自動滾回上一個版本 (超重要!)
+        # --set: 我們可以在這裡動態覆蓋 values.yaml 裡的設定
+        helm upgrade --install my-portfolio ./portfolio-chart \
+          --namespace default \
+          --set frontend.image.tag=v2.1 \
+          --set backend.image.tag=v2.0 \
+          --atomic
         
-        # 3. 查看狀態
+        # C. 顯示部署結果
         kubectl get pods

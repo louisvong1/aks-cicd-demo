@@ -4,14 +4,12 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    # 這是 Let's Encrypt 的正式伺服器網址
     server: https://acme-v02.api.letsencrypt.org/directory
-    # ⚠️ 這裡一定要改！換成你的 Email
-    email: louisvong1205@gmail.com
+    # 👇 讀取變數
+    email: {{ .Values.issuer.email }}
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    # 我們使用 HTTP-01 挑戰 (最簡單的方式)
     - http01:
         ingress:
           class: nginx
