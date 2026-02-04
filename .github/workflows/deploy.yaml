@@ -29,25 +29,27 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    # 5. Build & Push 前端 (Portfolio)
+    # 5. Build & Push 前端
     - name: Build/Push Frontend
       uses: docker/build-push-action@v5
       with:
         context: "./20260127 Portfolio"
         push: true
-        platforms: linux/arm64           # 關鍵：指定 ARM 架構
-        tags: louisvong1/louis-portfolio:v2.1  # 注意：這裡版號我先寫死 v2.1，以後你可以改
+        platforms: linux/arm64
+        # 👇 改這裡：變成 v2.1-<流水號> (例如 v2.1-45)
+        tags: louisvong1/louis-portfolio:v2.1-${{ github.run_number }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
-    # 6. Build & Push 後端 (Python)
+    # 6. Build & Push 後端
     - name: Build/Push Backend
       uses: docker/build-push-action@v5
       with:
         context: "./microservice/python-app"
         push: true
-        platforms: linux/arm64           # 關鍵：指定 ARM 架構
-        tags: louisvong1/my-counter-app:v2.0
+        platforms: linux/arm64
+        # 👇 改這裡：變成 v2.0-<流水號>
+        tags: louisvong1/my-counter-app:v2.0-${{ github.run_number }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -64,21 +66,16 @@ jobs:
         resource-group: RG-K8S-TEST    # ⚠️ 請確認你的資源群組名稱
         cluster-name: K8S-TEST         # ⚠️ 請確認你的 AKS 名稱
 
-    # 9. 部署 (改用 Helm)
+    # 9. 部署 (傳入動態 Tag)
     - name: Deploy to AKS with Helm
       run: |
-        # A. 安裝 Helm 工具 (GitHub 機器人預設沒有 Helm，要先裝)
         curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-        # B. 執行 Helm Upgrade
-        # --install: 如果是第一次部署就執行安裝，如果是後續部署就執行升級
-        # --atomic: 如果升級失敗，自動滾回上一個版本 (超重要!)
-        # --set: 我們可以在這裡動態覆蓋 values.yaml 裡的設定
+        # 👇 改這裡：把剛剛生成的流水號 Tag 傳進去
         helm upgrade --install my-portfolio ./portfolio-chart \
           --namespace default \
-          --set frontend.image.tag=v2.1 \
-          --set backend.image.tag=v2.0 \
+          --set frontend.image.tag=v2.1-${{ github.run_number }} \
+          --set backend.image.tag=v2.0-${{ github.run_number }} \
           --atomic
         
-        # C. 顯示部署結果
         kubectl get pods
